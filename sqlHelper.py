@@ -1,4 +1,5 @@
 import sqlite3
+from sqlite3 import Error
 
 __author__ = "Mario Gutierrez/wlwzrd"
 __email__ = "mfdogutierrez@gmail.com"
@@ -13,8 +14,17 @@ SQL_createTable = """ CREATE TABLE IF NOT EXISTS category_T (
                                         FOREIGN KEY(category_ParentID) REFERENCES category_T(category_ID)
                                     ); """
 
-def SQL_insert():
-    sql = """ INSERT """
+def insertSQL(cID,cName,cLevel,bOE,cParentID):
+    """ create an insert sql
+    :param cID: Category ID
+    :param cName: Category Name
+    :param cLevel: Category Level
+    :param bOE: Best Offer Enabled
+    :param cParentID: Category Parent ID
+    :return: created sql statement
+    """
+    sql = 'INSERT INTO category_T VALUES (' + cID + ',"' + cName + '",' + cLevel + ',"' + bOE + '",' + cParentID + ')'
+    return sql
 
 def createConnection(db):
     """ create a database connection to the SQLite3 database
@@ -24,18 +34,23 @@ def createConnection(db):
     try:
         conn = sqlite3.connect(db)
         return conn
-    except:
-        print("Error while creating database")
+    except Error as e:
+        print("Error while connecting to the  database")
+        print e
     return None 
 
 def runSQL(conn, sql):
     """ create a table based on the  sql statement
     :param conn: Connection object
-    :param sql: a CREATE TABLE statement
+    :param sql: a SQL query
     """
+    log = []
     try:
         c = conn.cursor()
         c.execute(sql)
         conn.commit()
-    except:
-        print("Error while CRUD in database")
+        return True
+    except Error as e:
+        log.append(["Error while running SQL in database",e,sql])
+        print log
+    return False

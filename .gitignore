@@ -1,3 +1,5 @@
 *.pyc
 *.py~
 ebay_categories.db
+*.html
+data.js
