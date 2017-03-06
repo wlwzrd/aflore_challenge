@@ -69,6 +69,8 @@ def createHTML(ID):
     htmlFile.close()
  
 def createJS(data):
+    """ Create de Json Data
+    """
     treeData = 'var data = ' + json.dumps(data["tree"]) + ';'
     htmlFile = open("123456.html",'w')
     jsFile = open("data.js",'w')

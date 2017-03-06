@@ -77,7 +77,10 @@ def insertNode(conn,cID,cName,cLevel,bOE,cParentID):
         print "NODE PARENT:", e,  cID
 
 def getCategories(conn, categoryID):
-    """ 
+    """ Select all the categories with parent up Category ID
+    :param:conn: Database connection
+    :param:categoryID: Given ID category
+    :return: Categories between left and right category ID left and rigth
     """
     try:
         cur = conn.cursor()
