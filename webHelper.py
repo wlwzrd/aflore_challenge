@@ -37,7 +37,7 @@ def createHTML(ID):
            '</nav>'+\
            '<div class="container">'+\
            '<div class="panel panel-primary">'+\
-           '<div class="panel-heading">Category Tree for ID: {categoryID} </div>'.format(categoryID=ID)+\
+           '<div class="panel-heading">Category Tree for <span class="label label-success">ID:{categoryID}</span></div>'.format(categoryID=ID)+\
            '<div class="panel-body">'+\
            '<ul id="demo"><item class="item" :model="treeData"></item></ul>'+\
            ' </div>'+\
@@ -46,7 +46,7 @@ def createHTML(ID):
     
     scriptItemTemplate = """<script type="text/x-template" id="item-template"><li>
     <div :class="{bold: isFolder}" @click="toggle" @dblclick="changeType">
-        {{model.name}}
+        <span class="label label-success">{{model.id}}</span> {{model.name}}
         <span v-if="isFolder">[{{open ? '-' : '+'}}]</span>
     </div>
       <ul v-show="open" v-if="isFolder">

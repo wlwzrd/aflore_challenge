@@ -39,9 +39,9 @@ def genTree(categoriesOrdered,parentNode):
         for j in result:
             l = genTree(categoriesOrdered,j)
             children.append(l)
-        return {"name":parentNode["cName"],"children":children}
+        return {"id":parentNode["cID"],"name":parentNode["cName"],"children":children}
     else:
-        return {"name":parentNode["cName"]}
+        return {"id":parentNode["cID"],"name":parentNode["cName"]}
         
 
 def genJson(rows):
